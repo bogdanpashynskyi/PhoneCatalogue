@@ -1,2 +1,5 @@
-# phone-catalogue-static
-Static pages of phone catalogue
+# PhoneCatalogue
+
+* [Preview](https://bogdanpashynskyi.github.io/PhoneCatalogue/)
+* [PR](https://github.com/bogdanpashynskyi/PhoneCatalogue/compare/master...gh-pages)
+
