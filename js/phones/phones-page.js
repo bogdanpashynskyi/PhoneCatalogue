@@ -1,11 +1,13 @@
 import PhoneCatalog from "./components/phones-catalog.js";
 import PhoneViewer from "./components/phone-viewer.js";
+import Basket from "./components/basket.js";
 import PhoneService from "./service/phone-service.js";
 import Component from "./component.js";
 
 export default class PhonesPage extends Component {
     constructor({ element }) {
       super({element});
+      
       this._render();
 
       this._catalog = new PhoneCatalog({
@@ -19,6 +21,11 @@ export default class PhonesPage extends Component {
           this._viewer.show(phoneDetails);
         },
 
+        onPhoneAdded: (phoneId) => {
+          this._phoneDetails = phoneId;
+
+          this._basket.addPhone(this._phoneDetails);
+        }
       });
 
       this._viewer = new PhoneViewer({
@@ -27,6 +34,10 @@ export default class PhonesPage extends Component {
           this._viewer.hide();
           this._catalog.show();
         }
+      })
+
+      this._basket = new Basket({
+        element: document.querySelector('.phones-page__phones-basket'),
       })
 
     }
@@ -53,11 +64,7 @@ export default class PhonesPage extends Component {
       
             <section>
               <p>Shopping Cart</p>
-              <ul>
-                <li>Phone 1</li>
-                <li>Phone 2</li>
-                <li>Phone 3</li>
-              </ul>
+              <div class="phones-page__phones-basket"></div>
             </section>
           </div>
       

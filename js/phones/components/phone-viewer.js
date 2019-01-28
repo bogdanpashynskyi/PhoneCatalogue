@@ -2,10 +2,10 @@ import Component from "../component.js";
 
 export default class PhoneViewer extends Component {
     constructor ({element,
-       onReturn = () => {}
+       onReturn = () => {},
+      //  onAdd = () => {}
       }){
       super({element});
-
       this._onReturn = onReturn;
     }
 
@@ -17,11 +17,11 @@ export default class PhoneViewer extends Component {
       this._selectImage(); 
 
       this._returnBtn = document.querySelector('[data-element="return-button"]');
-
       this._returnBtn.addEventListener('click', () => {
         this._onReturn();
+    
       })
-    }
+    };
 
     _selectImage() {
       this._images = document.querySelector('.phone-thumbs');
@@ -46,7 +46,7 @@ export default class PhoneViewer extends Component {
         <img class="phone" data-element="main-image" src="${ phone.images[0] }">
 
         <button data-element="return-button">Back</button>
-        <button>Add to basket</button>
+        <button data-element="add-button">Add to basket</button>
     
     
         <h1>${ phone.name }</h1>
