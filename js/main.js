@@ -1,4 +1,4 @@
 
  let currentPage = new PhonesPage({
-  element: document.querySelector('[data-page-container]')
+  element: document.querySelector('.phones-page')
 });
