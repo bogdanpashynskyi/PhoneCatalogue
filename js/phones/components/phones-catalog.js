@@ -1,18 +1,36 @@
 class PhoneCatalog {
-    constructor({ element, phones = [1,2,3] }) {
+    constructor({ element, 
+      phones = [], 
+      onPhoneSelected = () => {} 
+    }) {
         this._element = element;
         this._phones = phones;
+        this._onPhoneSelected = onPhoneSelected;
 
         this._render();
+
+        this._element.addEventListener('click', (event) => {
+          let phoneElement = event.target.closest('[data-element="phone"]');
+
+          if(!phoneElement) {
+            return;
+          }
+
+          this._onPhoneSelected(phoneElement.dataset.phoneId);
+        });
+    }
+
+    hide() {
+      this._element.hidden = true;
     }
 
     _render() {
         this._element.innerHTML = `
-        <ul class="phones">
+        <ul class="phone-list phones">
           ${ this._phones.map(phone => `
-          <li class="thumbnail">
-          <a href="#!/phones/motorola-xoom-with-wi-fi" class="thumb">
-            <img alt="Motorola XOOM™ with Wi-Fi" src="img/phones/motorola-xoom-with-wi-fi.0.jpg">
+          <li class="phone-list___element thumbnail" data-element="phone" data-phone-id="${ phone.id }">
+          <a href="#!/phones/${ phone.id }" class="thumb">
+            <img alt="${ phone.name }" src="${ phone.imageUrl }">
           </a>
 
           <div class="phones__btn-buy-wrapper">
@@ -21,10 +39,8 @@ class PhoneCatalog {
             </a>
           </div>
 
-          <a href="#!/phones/motorola-xoom-with-wi-fi">Motorola XOOM™ with Wi-Fi</a>
-          <p>The Next, Next Generation
-
-            Experience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb).</p>
+          <a href="#!/phones/${ phone.id }">${ phone.name }</a>
+          <p>${ phone.snippet }</p>
         </li>
         `).join('')}
         </ul>

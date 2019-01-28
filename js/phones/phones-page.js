@@ -5,7 +5,15 @@ class PhonesPage {
       this._render();
 
       this._catalog = new PhoneCatalog({
-        element: document.querySelector(".phones-page__phones-catalog")
+        element: document.querySelector(".phones-page__phones-catalog"),
+        phones: PhoneService.getAllPhones(),
+
+        onPhoneSelected: (phoneId) => {
+          const phoneDetails = PhoneService.getById(phoneId);
+
+          this._catalog.hide();
+          this._viewer.show(phoneDetails);
+        },
       });
 
       this._viewer = new PhoneViewer({
