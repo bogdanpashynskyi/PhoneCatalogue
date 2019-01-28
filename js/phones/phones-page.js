@@ -1,7 +1,7 @@
 class PhonesPage extends Component {
     constructor({ element }) {
-      super(element);
-
+      super({element});
+      console.log(this)
       this._render();
 
       this._catalog = new PhoneCatalog({

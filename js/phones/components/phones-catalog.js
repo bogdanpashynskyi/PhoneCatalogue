@@ -3,7 +3,7 @@ class PhoneCatalog extends Component {
       phones = [], 
       onPhoneSelected = () => {} 
     }) {
-        super(element)
+        super({element})
         this._phones = phones;
         this._onPhoneSelected = onPhoneSelected;
 
