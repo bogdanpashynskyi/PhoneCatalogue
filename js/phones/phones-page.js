@@ -1,7 +1,11 @@
-class PhonesPage extends Component {
+import PhoneCatalog from "./components/phones-catalog.js";
+import PhoneViewer from "./components/phones-viewer.js";
+import PhoneService from "./service/phones-service.js";
+import Component from "./component.js";
+
+export default class PhonesPage extends Component {
     constructor({ element }) {
       super({element});
-      console.log(this)
       this._render();
 
       this._catalog = new PhoneCatalog({
@@ -16,7 +20,6 @@ class PhonesPage extends Component {
         },
       });
 
-      console.log(this._element)
       this._viewer = new PhoneViewer({
         element: document.querySelector(".phone-page__phone-viewer")
       })

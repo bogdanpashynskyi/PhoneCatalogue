@@ -1,4 +1,5 @@
 const phonesFromServer = [ 
+
     {
         "age": 0, 
         "id": "motorola-xoom-with-wi-fi", 
@@ -234,3 +235,5 @@ const PhoneService = {
         return phoneDetails;
     }
 };
+
+export default PhoneService;

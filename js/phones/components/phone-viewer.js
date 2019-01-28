@@ -1,14 +1,17 @@
-class PhoneViewer extends Component {
+import Component from "./component.js";
+
+export default class PhoneViewer extends Component {
     constructor ({element}){
       super({element});
+
     }
 
     show(phoneDetails) {
       this._phoneDetails = phoneDetails;
-      this._element.hidden = false;
+      super.show();
 
       this._render();
-      this._selectImage();
+      this._selectImage();    
     }
 
     _selectImage() {
@@ -24,6 +27,8 @@ class PhoneViewer extends Component {
 
         mainImage.src = selectedImage.src;
       })
+
+
     }
 
     _render() {
@@ -32,7 +37,7 @@ class PhoneViewer extends Component {
         this._element.innerHTML = `
         <img class="phone" data-element="main-image" src="${ phone.images[0] }">
 
-        <button>Back</button>
+        <button data-element="return-button">Back</button>
         <button>Add to basket</button>
     
     

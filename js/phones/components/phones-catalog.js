@@ -1,4 +1,6 @@
-class PhoneCatalog extends Component {
+import Component from "./component.js";
+
+export default class PhoneCatalog extends Component {
     constructor({ element, 
       phones = [], 
       onPhoneSelected = () => {} 
@@ -21,7 +23,7 @@ class PhoneCatalog extends Component {
     }
 
     hide() {
-      this._element.hidden = true;
+      super.hide();
     }
 
     _render() {
