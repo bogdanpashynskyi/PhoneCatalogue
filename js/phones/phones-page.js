@@ -46,8 +46,8 @@ class PhonesPage {
       
           <!--Main content-->
           <div class="col-md-10">
-          <div class="phones-page__phones-catalog" hidden></div>
-          <div class="phone-page__phone-viewer"></div>
+          <div class="phones-page__phones-catalog"></div>
+          <div class="phone-page__phone-viewer" hidden></div>
       
           </div>
         </div>
