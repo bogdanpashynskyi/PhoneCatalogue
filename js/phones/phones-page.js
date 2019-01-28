@@ -18,10 +18,15 @@ export default class PhonesPage extends Component {
           this._catalog.hide();
           this._viewer.show(phoneDetails);
         },
+
       });
 
       this._viewer = new PhoneViewer({
-        element: document.querySelector(".phone-page__phone-viewer")
+        element: document.querySelector(".phone-page__phone-viewer"),
+        onReturn: () => {
+          this._viewer.hide();
+          this._catalog.show();
+        }
       })
 
     }

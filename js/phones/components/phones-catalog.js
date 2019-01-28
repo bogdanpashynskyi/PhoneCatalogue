@@ -3,7 +3,7 @@ import Component from "../component.js";
 export default class PhoneCatalog extends Component {
     constructor({ element, 
       phones = [], 
-      onPhoneSelected = () => {} 
+      onPhoneSelected = () => {},
     }) {
         super({element})
         this._phones = phones;

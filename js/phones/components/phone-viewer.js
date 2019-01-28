@@ -1,9 +1,12 @@
 import Component from "../component.js";
 
 export default class PhoneViewer extends Component {
-    constructor ({element}){
+    constructor ({element,
+       onReturn = () => {}
+      }){
       super({element});
 
+      this._onReturn = onReturn;
     }
 
     show(phoneDetails) {
@@ -11,7 +14,13 @@ export default class PhoneViewer extends Component {
       super.show();
 
       this._render();
-      this._selectImage();    
+      this._selectImage(); 
+
+      this._returnBtn = document.querySelector('[data-element="return-button"]');
+
+      this._returnBtn.addEventListener('click', () => {
+        this._onReturn();
+      })
     }
 
     _selectImage() {
@@ -27,7 +36,6 @@ export default class PhoneViewer extends Component {
 
         mainImage.src = selectedImage.src;
       })
-
 
     }
 
