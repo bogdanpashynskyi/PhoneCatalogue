@@ -1,6 +1,6 @@
-class PhonesPage {
+class PhonesPage extends Component {
     constructor({ element }) {
-      this._element = element;
+      super(element);
 
       this._render();
 
@@ -16,6 +16,7 @@ class PhonesPage {
         },
       });
 
+      console.log(this._element)
       this._viewer = new PhoneViewer({
         element: document.querySelector(".phone-page__phone-viewer")
       })

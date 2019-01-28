@@ -1,9 +1,9 @@
-class PhoneCatalog {
+class PhoneCatalog extends Component {
     constructor({ element, 
       phones = [], 
       onPhoneSelected = () => {} 
     }) {
-        this._element = element;
+        super(element)
         this._phones = phones;
         this._onPhoneSelected = onPhoneSelected;
 

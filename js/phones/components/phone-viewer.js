@@ -1,7 +1,6 @@
-class PhoneViewer {
-    constructor({ element }) {
-        this._element = element;
-
+class PhoneViewer extends Component {
+    constructor ({element}){
+      super(element);
     }
 
     show(phoneDetails) {
@@ -9,6 +8,8 @@ class PhoneViewer {
       this._element.hidden = false;
 
       this._render();
+
+      
     }
 
     _render() {
