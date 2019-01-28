@@ -1,6 +1,6 @@
 import PhoneCatalog from "./components/phones-catalog.js";
-import PhoneViewer from "./components/phones-viewer.js";
-import PhoneService from "./service/phones-service.js";
+import PhoneViewer from "./components/phone-viewer.js";
+import PhoneService from "./service/phone-service.js";
 import Component from "./component.js";
 
 export default class PhonesPage extends Component {
