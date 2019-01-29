@@ -56,6 +56,18 @@ img.phone:first-child {
   display: block;
 }
 
+ul[data-element='basket'] {
+  list-style: none;
+}
+
+li[data-element="basket-item-text"] {
+  font-size: 13px;
+  margin-top: 5px;
+  padding: 5px;
+  margin-left: -40px;
+  border-top: 1px solid #e6e6ff;
+  border-bottom: 1px solid #e6e6ff;
+}
 
 ul.phone-thumbs {
   margin: 0;
@@ -78,7 +90,6 @@ ul.phone-thumbs img {
 ul.phone-thumbs img:hover {
   cursor: pointer;
 }
-
 
 ul.specs {
   clear: both;
@@ -109,4 +120,21 @@ h1 {
 .basket__clear-button {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.remove-button {
+  color: darkred;
+  right: 10px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+div[data-element="basket-item"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }

@@ -59,6 +59,13 @@ export default class PhonesPage extends Component {
       this.on('click', 'clear-basket-button', () => {
         this._basket.clear();
       });
+
+      this.on('click', 'remove-button', (event) => {
+        let target = event.target;
+        console.log(target);
+
+        this._basket.removePhone(target.parentNode);
+    });
     };
 
      _render() {
