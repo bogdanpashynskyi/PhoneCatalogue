@@ -10,4 +10,16 @@ export default class Component {
     hide() {
         this._element.hidden = true;
     }
+
+    on(eventName, selector, callback) {
+        this._element.addEventListener(eventName, (event) => {
+            let delegetedTarget = event.target.closest(selector);
+
+            if(!delegetedTarget || !this._element.contains(delegetedTarget)) {
+                return;
+            }
+
+            callback(event);
+        })
+    }
 }

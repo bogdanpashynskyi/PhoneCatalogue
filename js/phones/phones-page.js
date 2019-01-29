@@ -47,9 +47,8 @@ export default class PhonesPage extends Component {
         element: document.querySelector('.phones-page__phones-basket'),
       })
 
-      this._clearBasket = document.querySelector('.basket__clear-button');
-
-      this._clearBasket.addEventListener('click', () => {
+      this.on('click', '.basket__clear-button',  () => {
+        this._clearBasket = document.querySelector('.basket__clear-button');
         this._basket.clearBasket();
       })
     }

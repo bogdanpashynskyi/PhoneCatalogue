@@ -13,23 +13,14 @@ export default class PhoneCatalog extends Component {
 
         this._render();
 
-        this._element.addEventListener('click', (event) => {
+        this.on('click', '[data-element="phone"]', (event) => {
           let phoneElement = event.target.closest('[data-element="phone"]');
 
-          if(!phoneElement) {
-            return;
-          }
+          this._onPhoneSelected(phoneElement.dataset.phoneId)})
 
-          this._onPhoneSelected(phoneElement.dataset.phoneId);
-        });
-
-        this._element.addEventListener('click', (event) => {
+        this.on('click', '[data-element="catalog__basket-add-button"]', (event) => {
           let clickedAddBtn = event.target.closest('[data-element="catalog__basket-add-button"]');
-
-          if(!clickedAddBtn) {
-            return;
-          }
-
+          
           this._onPhoneAdded(clickedAddBtn.dataset.phoneName);
         })
     }
