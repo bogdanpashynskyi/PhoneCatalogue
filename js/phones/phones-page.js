@@ -47,8 +47,8 @@ export default class PhonesPage extends Component {
         element: document.querySelector('.phones-page__phones-basket'),
       })
 
-      this.on('click', '.basket__clear-button',  () => {
-        this._clearBasket = document.querySelector('.basket__clear-button');
+      this.on('click', 'clear-basket-button', (event) => {
+        this._clearBasket = event.target;
         this._basket.clearBasket();
       })
     }
@@ -75,7 +75,7 @@ export default class PhonesPage extends Component {
       
             <section>
               <p>Shopping Cart</p>
-              <button class="basket__clear-button">Clear Basket</button>
+              <button data-element="clear-basket-button">Clear Basket</button>
               <div class="phones-page__phones-basket"></div>
             </section>
           </div>

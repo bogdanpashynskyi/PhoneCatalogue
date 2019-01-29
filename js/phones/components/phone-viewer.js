@@ -10,16 +10,15 @@ export default class PhoneViewer extends Component {
       this._onAddInViewer = onAddInViewer;
       
 
-      this.on('click', '[data-element="return-button"]', this._onReturn);
+      this.on('click', 'return-button', this._onReturn);
 
-      this.on('click', '[data-element="viewer-add-button"]', (event) => {
+      this.on('click', 'viewer-add-button', (event) => { 
+        let phoneAdded = event.target;
 
-        // все равно почему-то надо сохранять phoneAdded, чтобы его вызвать 
-        let phoneAdded = event.target.closest('[data-element="viewer-add-button"]')
         this._onAddInViewer(phoneAdded.dataset.phoneName);
       })
 
-      this.on('click', '[data-element="small-image"]', (event) => {
+      this.on('click', 'small-image', (event) => {
         let smallImage = event.target;
         let mainImage = document.querySelector('[data-element="main-image"]');
         mainImage.src = smallImage.src;
@@ -30,8 +29,7 @@ export default class PhoneViewer extends Component {
       this._phoneDetails = phoneDetails;
       super.show();
 
-      this._render();
-      this._selectImage();      
+      this._render();     
     };
 
     _render() {
