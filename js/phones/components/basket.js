@@ -1,8 +1,8 @@
 import Component from "../component.js";
 
 export default class Basket extends Component {
-    constructor({element}) {
-        super({element});
+    constructor({ element }) {
+        super({ element });
 
         this._render();
     }

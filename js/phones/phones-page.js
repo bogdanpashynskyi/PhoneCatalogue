@@ -6,7 +6,7 @@ import Component from "./component.js";
 
 export default class PhonesPage extends Component {
     constructor({ element }) {
-      super({element});
+      super({ element });
 
       this._render();
 

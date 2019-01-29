@@ -1,11 +1,11 @@
 import Component from "../component.js";
 
 export default class PhoneViewer extends Component {
-    constructor ({element,
+    constructor ({ element,
        onReturn = () => {},
        onAddInViewer = () => {}
       }){
-      super({element});
+      super({ element });
       this._onReturn = onReturn;
       this._onAddInViewer = onAddInViewer;
     }
