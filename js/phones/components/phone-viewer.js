@@ -8,10 +8,9 @@ export default class PhoneViewer extends Component {
         this.emit('return')
       });
 
-      this.on('click', 'viewer-add-button', (event) => { 
-        let phoneAdded = event.target;
+      this.on('click', 'viewer-add-button', () => { 
 
-        this.emit('phone-added-inViewer', phoneAdded.dataset.phoneName);
+        this.emit('phone-added-in-viewer', this._phoneDetails.name);
       })
 
       this.on('click', 'small-image', (event) => {
@@ -23,8 +22,8 @@ export default class PhoneViewer extends Component {
 
     show(phoneDetails) {
       this._phoneDetails = phoneDetails;
-      super.show();
 
+      super.show();
       this._render();     
     };
 
