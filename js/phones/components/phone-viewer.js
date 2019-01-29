@@ -22,7 +22,7 @@ export default class PhoneViewer extends Component {
 
     show(phoneDetails) {
       this._phoneDetails = phoneDetails;
-
+      
       super.show();
       this._render();     
     };
