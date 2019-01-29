@@ -1,21 +1,17 @@
 import Component from "../component.js";
 
 export default class PhoneViewer extends Component {
-    constructor ({ element,
-       onReturn = () => {},
-       onAddInViewer = () => {}
-      }){
+    constructor ({ element }){
       super({ element });
-      this._onReturn = onReturn;
-      this._onAddInViewer = onAddInViewer;
-      
 
-      this.on('click', 'return-button', this._onReturn);
+      this.on('click', 'return-button', () => {
+        this.emit('return')
+      });
 
       this.on('click', 'viewer-add-button', (event) => { 
         let phoneAdded = event.target;
 
-        this._onAddInViewer(phoneAdded.dataset.phoneName);
+        this.emit('phone-added-inViewer', phoneAdded.dataset.phoneName);
       })
 
       this.on('click', 'small-image', (event) => {

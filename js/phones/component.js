@@ -1,6 +1,7 @@
 export default class Component {
     constructor({ element }) {
         this._element = element;
+        this._callbackSet = {};
     }
 
     show() {
@@ -21,5 +22,19 @@ export default class Component {
 
             callback(event);
         })
+    }
+
+    subscribe(eventName, callback) {
+        this._callbackSet[eventName] = callback;
+    }
+
+    emit(eventName, data) {
+        const callback = this._callbackSet[eventName];
+        
+        if (!callback) {
+            return;
+        }
+
+        callback(data);
     }
 }

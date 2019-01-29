@@ -10,39 +10,51 @@ export default class PhonesPage extends Component {
 
       this._render();
 
+      this._initCatalog();
+      this._initViewer();
+      this._initBasket();
+    }
+
+    _initCatalog() {
       this._catalog = new PhoneCatalog({
         element: document.querySelector(".phones-page__phones-catalog"),
         phones: PhoneService.getAllPhones(),
-
-        onPhoneSelected: (phoneId) => {
-          const phoneDetails = PhoneService.getById(phoneId);
-
-          this._catalog.hide();
-          this._viewer.show(phoneDetails);
-        },
-
-        onPhoneAdded: (phoneId) => {
-          this._phoneDetails = phoneId;
-
-          this._basket.addPhone(this._phoneDetails);
-        }
       });
 
+      this._catalog.subscribe(
+        'phone-selected',
+        (phoneId) => {
+        const phoneDetails = PhoneService.getById(phoneId);
+
+        this._catalog.hide();
+        this._viewer.show(phoneDetails);
+      }) 
+
+      this._catalog.subscribe('phone-added', (phoneId) => {
+        this._phoneDetails = phoneId;
+
+        this._basket.addPhone(this._phoneDetails);
+      });
+    };
+    
+    _initViewer() {
       this._viewer = new PhoneViewer({
         element: document.querySelector(".phones-page__phone-viewer"),
-
-        onReturn: () => {
-          this._viewer.hide();
-          this._catalog.show();
-        },
-
-        onAddInViewer: (phoneName) => {
-          this._phoneName = phoneName;
-
-          this._basket.addPhone(this._phoneName)
-        }
       })
 
+      this._viewer.subscribe('return', () => {
+        this._viewer.hide();
+        this._catalog.show();
+      });
+
+      this._viewer.subscribe('phone-added-inViewer', (phoneName) => {
+        this._phoneName = phoneName;
+
+        this._basket.addPhone(this._phoneName)
+      });
+    };
+
+    _initBasket() {
       this._basket = new Basket({
         element: document.querySelector('.phones-page__phones-basket'),
       })
@@ -51,7 +63,7 @@ export default class PhonesPage extends Component {
         this._clearBasket = event.target;
         this._basket.clearBasket();
       })
-    }
+    };
 
      _render() {
       this._element.innerHTML = `
