@@ -15,7 +15,8 @@ export default class Basket extends Component {
     }
 
     clear() {
-        this._element.innerHTML = '';
+        this._element.innerHTML = `<ul data-element="gallery">
+        </ul>`;
     }
 
     _render() {
