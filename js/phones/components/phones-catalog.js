@@ -20,15 +20,11 @@ export default class PhoneCatalog extends Component {
             return;
           }
 
-          if(phoneElement.dataset.element === "catalog-add-button") {
-            return;
-          }
-
           this._onPhoneSelected(phoneElement.dataset.phoneId);
         });
 
         this._element.addEventListener('click', (event) => {
-          let clickedAddBtn = event.target.closest('[data-element="catalog-add-button"]');
+          let clickedAddBtn = event.target.closest('[data-element="catalog__basket-add-button"]');
 
           if(!clickedAddBtn) {
             return;
@@ -52,12 +48,12 @@ export default class PhoneCatalog extends Component {
           </a>
 
           <div class="phones__btn-buy-wrapper">
-            <a data-phone-name="${ phone.name }" class="btn btn-success" data-element="catalog-add-button">
+            <a data-phone-name="${ phone.name }" class="btn btn-success" data-element="catalog__basket-add-button">
               Add
             </a>
           </div>
 
-          <a data-element="phone-header" href="#!/phones/${ phone.id }">${ phone.name }</a>
+          <a href="#!/phones/${ phone.id }">${ phone.name }</a>
           <p>${ phone.snippet }</p>
         </li>
         `).join('')}

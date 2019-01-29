@@ -3,10 +3,11 @@ import Component from "../component.js";
 export default class PhoneViewer extends Component {
     constructor ({element,
        onReturn = () => {},
-      //  onAdd = () => {}
+       onAddInViewer = () => {}
       }){
       super({element});
       this._onReturn = onReturn;
+      this._onAddInViewer = onAddInViewer;
     }
 
     show(phoneDetails) {
@@ -20,6 +21,16 @@ export default class PhoneViewer extends Component {
       this._returnBtn.addEventListener('click', () => {
         this._onReturn();
     
+      })
+
+      this._element.addEventListener('click', (event) => {
+        let phoneAdded = event.target.closest('[data-element="viewer-add-button"]');
+
+        if(!phoneAdded) {
+          return;
+        }
+
+        this._onAddInViewer(phoneAdded.dataset.phoneName);
       })
     };
 
@@ -45,8 +56,8 @@ export default class PhoneViewer extends Component {
         this._element.innerHTML = `
         <img class="phone" data-element="main-image" src="${ phone.images[0] }">
 
-        <button data-element="return-button">Back</button>
-        <button data-element="add-button">Add to basket</button>
+        <button data-element="return-button" >Back</button>
+        <button data-element="viewer-add-button" data-phone-name="${phone.name}">Add to basket</button>
     
     
         <h1>${ phone.name }</h1>
