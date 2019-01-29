@@ -9,18 +9,18 @@ export default class Basket extends Component {
 
     addPhone(phone) {
         this._phone = phone;
-        let ul = document.querySelector('ul');
+        let gallery = document.querySelector('[data-element="gallery"]');
 
-        ul.insertAdjacentHTML('afterBegin', `<li>${this._phone}</li>`);
+        gallery.insertAdjacentHTML('afterBegin', `<li>${this._phone}</li>`);
     }
 
-    clearBasket() {
-        this._element.innerHTML = "";
+    clear() {
+        this._element.innerHTML = '';
     }
 
     _render() {
         this._element.innerHTML = `
-        <ul>
+        <ul data-element="gallery">
         </ul>
         `
     }

@@ -21,11 +21,8 @@ export default class PhonesPage extends Component {
         phones: PhoneService.getAllPhones(),
       });
 
-      this._catalog.subscribe(
-        'phone-selected',
-        (phoneId) => {
+      this._catalog.subscribe('phone-selected', (phoneId) => {
         const phoneDetails = PhoneService.getById(phoneId);
-
         this._catalog.hide();
         this._viewer.show(phoneDetails);
       }) 
@@ -36,7 +33,7 @@ export default class PhonesPage extends Component {
         this._basket.addPhone(this._phoneDetails);
       });
     };
-    
+
     _initViewer() {
       this._viewer = new PhoneViewer({
         element: document.querySelector(".phones-page__phone-viewer"),
@@ -47,7 +44,7 @@ export default class PhonesPage extends Component {
         this._catalog.show();
       });
 
-      this._viewer.subscribe('phone-added-inViewer', (phoneName) => {
+      this._viewer.subscribe('phone-added-in-viewer', (phoneName) => {
         this._phoneName = phoneName;
 
         this._basket.addPhone(this._phoneName)
@@ -59,10 +56,9 @@ export default class PhonesPage extends Component {
         element: document.querySelector('.phones-page__phones-basket'),
       })
 
-      this.on('click', 'clear-basket-button', (event) => {
-        this._clearBasket = event.target;
-        this._basket.clearBasket();
-      })
+      this.on('click', 'clear-basket-button', () => {
+        this._basket.clear();
+      });
     };
 
      _render() {
