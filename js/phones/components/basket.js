@@ -14,6 +14,10 @@ export default class Basket extends Component {
         ul.insertAdjacentHTML('afterBegin', `<li>${this._phone}</li>`);
     }
 
+    clearBasket() {
+        this._element.innerHTML = "";
+    }
+
     _render() {
         this._element.innerHTML = `
         <ul>

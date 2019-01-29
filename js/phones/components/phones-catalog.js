@@ -20,10 +20,6 @@ export default class PhoneCatalog extends Component {
             return;
           }
 
-          if(phoneElement.dataset.element === "catalog-add-button") {
-            return;
-          }
-
           this._onPhoneSelected(phoneElement.dataset.phoneId);
         });
 
@@ -57,7 +53,7 @@ export default class PhoneCatalog extends Component {
             </a>
           </div>
 
-          <a data-element="phone-header" href="#!/phones/${ phone.id }">${ phone.name }</a>
+          <a href="#!/phones/${ phone.id }">${ phone.name }</a>
           <p>${ phone.snippet }</p>
         </li>
         `).join('')}
