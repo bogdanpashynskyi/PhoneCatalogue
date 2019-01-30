@@ -27,10 +27,10 @@ export default class PhonesPage extends Component {
         this._viewer.show(phoneDetails);
       }) 
 
-      this._catalog.subscribe('phone-added', (phoneId) => {
-        this._phoneDetails = phoneId;
+      this._catalog.subscribe('phone-added', (phoneName) => {
+        this._phoneDetails = phoneName;
 
-        this._basket.addPhone(this._phoneDetails);
+        this._basket.addItem(this._phoneDetails);
       });
     };
 
@@ -47,7 +47,7 @@ export default class PhonesPage extends Component {
       this._viewer.subscribe('phone-added-in-viewer', (phoneName) => {
         this._phoneName = phoneName;
 
-        this._basket.addPhone(this._phoneName)
+        this._basket.addItem(this._phoneName)
       });
     };
 
@@ -60,12 +60,6 @@ export default class PhonesPage extends Component {
         this._basket.clear();
       });
 
-      this.on('click', 'remove-button', (event) => {
-        let target = event.target;
-        console.log(target);
-
-        this._basket.removePhone(target.parentNode);
-    });
     };
 
      _render() {

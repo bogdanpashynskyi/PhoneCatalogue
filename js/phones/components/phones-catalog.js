@@ -9,7 +9,13 @@ export default class PhoneCatalog extends Component {
 
         this._render();
 
-        this.on('click', 'phone', (event) => {
+        this.on('click', 'phone-img', (event) => {
+          let phoneElement = event.target;
+
+          this.emit('phone-selected', phoneElement.dataset.phoneId);
+        })
+
+        this.on('click', 'phone-header', (event) => {
           let phoneElement = event.target;
 
           this.emit('phone-selected', phoneElement.dataset.phoneId);
@@ -30,18 +36,17 @@ export default class PhoneCatalog extends Component {
         this._element.innerHTML = `
         <ul class="phone-list phones">
           ${ this._phones.map(phone => `
-          <li class="phone-list___element thumbnail" data-element="phone" data-phone-id="${ phone.id }">
+          <li class="phone-list___element thumbnail" data-phone-id="${ phone.id }">
           <a href="#!/phones/${ phone.id }" class="thumb">
-            <img alt="${ phone.name }" src="${ phone.imageUrl }">
+            <img data-element="phone-img" alt="${ phone.name }" src="${ phone.imageUrl }">
           </a>
-
           <div class="phones__btn-buy-wrapper">
             <a data-phone-name="${ phone.name }" class="btn btn-success" data-element="phone-add-button">
               Add
             </a>
           </div>
 
-          <a href="#!/phones/${ phone.id }">${ phone.name }</a>
+          <a href="#!/phones/${ phone.id }" data-element="phone-header">${ phone.name }</a>
           <p>${ phone.snippet }</p>
         </li>
         `).join('')}
