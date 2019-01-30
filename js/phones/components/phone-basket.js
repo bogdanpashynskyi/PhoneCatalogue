@@ -38,7 +38,6 @@ export default class Basket extends Component {
             )
         } else { this._basketItems[index].qty += 1 }
 
-
         this._render();
     }
 

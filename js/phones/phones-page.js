@@ -1,6 +1,7 @@
-import PhoneCatalog from "./components/phones-catalog.js";
+import PhoneCatalog from "./components/phone-catalog.js";
 import PhoneViewer from "./components/phone-viewer.js";
-import Basket from "./components/basket.js";
+import PhoneSearchBar from "./components/phone-search-bar.js";
+import Basket from "./components/phone-basket.js";
 import PhoneService from "./service/phone-service.js";
 import Component from "./component.js";
 
@@ -13,6 +14,7 @@ export default class PhonesPage extends Component {
       this._initCatalog();
       this._initViewer();
       this._initBasket();
+      this._initSearchBar();
     }
 
     _initCatalog() {
@@ -62,28 +64,21 @@ export default class PhonesPage extends Component {
 
     };
 
+    _initSearchBar() {
+      this._searchBar = new PhoneSearchBar( {
+        element: document.querySelector('.phones-page__search-bar')
+      });
+    }
+
      _render() {
       this._element.innerHTML = `
         <div class="row">
            <!--Sidebar-->
           <div class="col-md-2">
+          <div class="phones-page__search-bar"></div>
+          
             <section>
-              <p>
-                Search:
-                <input>
-              </p>
-      
-              <p>
-                Sort by:
-                <select>
-                  <option value="name">Alphabetical</option>
-                  <option value="age">Newest</option>
-                </select>
-              </p>
-            </section>
-      
-            <section>
-              <p>Shopping Cart</p>
+              <p class="basket-header">Shopping Cart</p>
               <button data-element="clear-basket-button">Clear Basket</button>
               <div class="phones-page__phones-basket"></div>
             </section>

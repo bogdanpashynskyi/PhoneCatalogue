@@ -28,10 +28,6 @@ export default class PhoneCatalog extends Component {
         })
     }
 
-    hide() {
-      super.hide();
-    }
-
     _render() {
         this._element.innerHTML = `
         <ul class="phone-list phones">
