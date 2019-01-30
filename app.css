@@ -52,6 +52,10 @@ img.phone {
   display: none;
 }
 
+div[data-element="quantity"] {
+  color: blue;
+}
+
 img.phone:first-child {
   display: block;
 }
@@ -60,13 +64,20 @@ ul[data-element='basket'] {
   list-style: none;
 }
 
-li[data-element="basket-item-text"] {
+li[data-element="basket-item"] {
+  display: flex;
   font-size: 13px;
   margin-top: 5px;
-  padding: 5px;
+  padding: 10px;
   margin-left: -40px;
   border-top: 1px solid #e6e6ff;
   border-bottom: 1px solid #e6e6ff;
+}
+
+.qty-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
 }
 
 ul.phone-thumbs {
@@ -133,8 +144,3 @@ h1 {
   cursor: pointer;
 }
 
-div[data-element="basket-item"] {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
