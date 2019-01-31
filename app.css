@@ -177,8 +177,21 @@ h1 {
   margin-bottom: 10px;
 }
 
+.add-qty-button, .reduce-qty-button {
+  color: darkred;
+  font-size: 15px;
+  right: 10px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 .remove-button {
   color: darkred;
+  font-size: 20px;
   right: 10px;
   display: block;
   width: 24px;

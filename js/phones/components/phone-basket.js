@@ -9,6 +9,14 @@ export default class Basket extends Component {
         this.on('click', 'remove-button', (phone) => {
             this._removeItem(phone);
         })
+
+        this.on('click', 'add-qty-button', (phone) => {
+            this._addQty(phone);
+        })
+
+        this.on('click', 'reduce-qty-button', (phone) => {
+            this._reduceQty(phone);
+        })
     }
 
     _removeItem(event) {
@@ -53,6 +61,28 @@ export default class Basket extends Component {
         return null;
     }
 
+    _addQty(event) {
+        let phoneId = event.target.closest('[data-element="basket-item"]').id;
+        let index = this._findIndex(phoneId);
+        this._basketItems[index].qty++;
+
+        this._render();
+    }
+
+    _reduceQty() {
+        let phoneId = event.target.closest('[data-element="basket-item"]').id;
+        let index = this._findIndex(phoneId);
+        let qty = this._basketItems[index].qty;
+
+        this._basketItems[index].qty--;
+
+        if(qty < 2) {
+            this._basketItems.splice(index, 1);
+        }
+
+        this._render();
+    }
+
     clear() {
         this._basketItems.length = 0;
         this._render();
@@ -65,7 +95,9 @@ export default class Basket extends Component {
                 <div data-element="basket-item" id="${ item.name }">
                     <li>${ item.name } </li>
                     <div class="qty-button">
+                        <button type="button" class="add-qty-button" data-element="reduce-qty-button">-</button>
                         <div>  Qty: ${ item.qty }</div> 
+                        <button type="button" class="reduce-qty-button" data-element="add-qty-button">+</button>
                         <button class="remove-button" data-element="remove-button">x</button>
                     </div>
                 </div>
