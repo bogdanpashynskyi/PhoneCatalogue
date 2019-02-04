@@ -1,6 +1,6 @@
 import PhoneCatalog from "./components/phone-catalog.js";
 import PhoneViewer from "./components/phone-viewer.js";
-import PhoneSearchBar from "./components/phone-search-bar.js";
+import Filter from "./components/phone-search-bar.js";
 import Basket from "./components/phone-basket.js";
 import PhoneService from "./service/phone-service.js";
 import Component from "./component.js";
@@ -10,23 +10,27 @@ export default class PhonesPage extends Component {
       super({ element });
 
       this._render();
-
+      this._initFilter();
       this._initCatalog();
       this._initViewer();
       this._initBasket();
-      this._initSearchBar();
     }
 
     _initCatalog() {
       this._catalog = new PhoneCatalog({
         element: document.querySelector(".phones-page__phones-catalog"),
-        phones: PhoneService.getAllPhones(),
       });
 
+      let phones = PhoneService.getAllPhones();
+
+      this._catalog.show(phones);
+
       this._catalog.subscribe('phone-selected', (phoneId) => {
-        const phoneDetails = PhoneService.getById(phoneId);
-        this._catalog.hide();
-        this._viewer.show(phoneDetails);
+        PhoneService.getById(phoneId, (phoneDetails) => {
+          this._catalog.hide();
+          this._viewer.show(phoneDetails);
+        });
+
       }) 
 
       this._catalog.subscribe('phone-added', (phoneName) => {
@@ -38,7 +42,7 @@ export default class PhonesPage extends Component {
 
     _initViewer() {
       this._viewer = new PhoneViewer({
-        element: document.querySelector(".phones-page__phone-viewer"),
+        element: document.querySelector('.phones-page__phone-viewer'),
       })
 
       this._viewer.subscribe('return', () => {
@@ -64,10 +68,22 @@ export default class PhonesPage extends Component {
 
     };
 
-    _initSearchBar() {
-      this._searchBar = new PhoneSearchBar( {
+    _initFilter() {
+      this._filter = new Filter( {
         element: document.querySelector('.phones-page__search-bar')
       });
+
+      this._filter.subscribe('order-changed', (orderType) => {
+        let phones = PhoneService.getAllPhones({ orderType });
+
+        this._catalog.show(phones);
+      })
+
+      this._filter.subscribe('phones-filtered', (query) => {
+        let phones = PhoneService.getAllPhones({ query });
+
+        this._catalog.show(phones);
+      })
     }
 
      _render() {
