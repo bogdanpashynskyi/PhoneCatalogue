@@ -10,18 +10,18 @@ export default class PhonesPage extends Component {
       super({ element });
 
       this._render();
-      this._initFilter();
+
       this._initCatalog();
       this._initViewer();
       this._initBasket();
+      this._initFilter();
+      this._showPhones();
     }
 
     _initCatalog() {
       this._catalog = new PhoneCatalog({
         element: document.querySelector(".phones-page__phones-catalog"),
       });
-
-      this._showPhones();
 
       this._catalog.subscribe('phone-selected', (phoneId) => {
         PhoneService.getById(phoneId, (phoneDetails) => {
@@ -82,9 +82,11 @@ export default class PhonesPage extends Component {
 
     _showPhones() {
       let currentFiltering = this._filter.getCurrentData();
-      let phones = PhoneService.getAllPhones(currentFiltering);
+      PhoneService.getAllPhones(currentFiltering, (phones) => {
+        this._catalog.show(phones);
+      });
 
-      this._catalog.show(phones);
+      
     }
 
      _render() {
