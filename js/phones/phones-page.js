@@ -45,7 +45,10 @@ export default class PhonesPage extends Component {
 
       this._viewer.subscribe('return', () => {
         this._viewer.hide();
-        this._catalog.show();
+
+        PhoneService.getAllPhones((phones) => {
+          this._catalog.show(phones);
+        })
       });
 
       this._viewer.subscribe('phone-added-in-viewer', (phoneName) => {
@@ -82,11 +85,9 @@ export default class PhonesPage extends Component {
 
     _showPhones() {
       let currentFiltering = this._filter.getCurrentData();
-      PhoneService.getAllPhones(currentFiltering, (phones) => {
+      PhoneService.getAllPhones((phones) => {
         this._catalog.show(phones);
-      });
-
-      
+      }, currentFiltering);  
     }
 
      _render() {

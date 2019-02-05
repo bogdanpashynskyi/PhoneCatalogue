@@ -1,5 +1,5 @@
 const PhoneService = {
-    getAllPhones( { query = '', orderType = ''} = {}, callback) {
+    getAllPhones( callback, { query = '', orderType = ''} = {}) {
         let url = 'https://mate-academy.github.io/phone-catalogue-static/phones/phones.json';
 
         const callbackForSendingRequest = (phones) => {
