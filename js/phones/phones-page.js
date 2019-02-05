@@ -21,9 +21,7 @@ export default class PhonesPage extends Component {
         element: document.querySelector(".phones-page__phones-catalog"),
       });
 
-      let phones = PhoneService.getAllPhones();
-
-      this._catalog.show(phones);
+      this._showPhones();
 
       this._catalog.subscribe('phone-selected', (phoneId) => {
         PhoneService.getById(phoneId, (phoneDetails) => {
@@ -73,17 +71,20 @@ export default class PhonesPage extends Component {
         element: document.querySelector('.phones-page__search-bar')
       });
 
-      this._filter.subscribe('order-changed', (orderType) => {
-        let phones = PhoneService.getAllPhones({ orderType });
-
-        this._catalog.show(phones);
+      this._filter.subscribe('order-changed', () => {
+        this._showPhones();
       })
 
-      this._filter.subscribe('phones-filtered', (query) => {
-        let phones = PhoneService.getAllPhones({ query });
-
-        this._catalog.show(phones);
+      this._filter.subscribe('phones-filtered', () => {
+        this._showPhones();
       })
+    }
+
+    _showPhones() {
+      let currentFiltering = this._filter.getCurrentData();
+      let phones = PhoneService.getAllPhones(currentFiltering);
+
+      this._catalog.show(phones);
     }
 
      _render() {

@@ -1,5 +1,7 @@
 const PhoneService = {
-    getAllPhones( { orderType = '', query = '' } = {}) {
+    getAllPhones( { query = '', orderType = ''} = {}) {
+
+        console.log(query, orderType);
 
         let xhr = new XMLHttpRequest();
 
@@ -17,8 +19,10 @@ const PhoneService = {
         }  
 
         let phones = JSON.parse(xhr.responseText);
-
-        return phones;
+        
+        let filteredPhones = this._filter(phones, query);
+        
+        return filteredPhones;
     },
 
     getById(phoneId, callback) {
@@ -43,8 +47,19 @@ const PhoneService = {
             callback(phoneDetails);
         }
 
-    }
+    },
 
+    _filter(phones, query) {
+        let lowerCasedQuery = query.toLowerCase();
+
+        return phones.filter((phone) => {
+            return phone.name.toLowerCase().includes(lowerCasedQuery)
+        }); 
+    },
+
+    _sort(phones, orderType) {
+        
+    }
 };
 
 export default PhoneService;

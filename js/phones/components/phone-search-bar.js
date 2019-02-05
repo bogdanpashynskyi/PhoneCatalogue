@@ -1,6 +1,6 @@
 import Component from "../component.js";
 
-let debounce = _.debounce;
+const debounce = _.debounce;
 
 const QUERY_CHANGE_DELAY = 300;
 
@@ -14,16 +14,21 @@ export default class Filter extends Component {
         this._queryField = this._element.querySelector('[data-element="query-field"]')
 
         this.on('change', 'order-field', () => {
-            console.log(this._orderField.value)
-            this.emit('order-changed', this._orderField.value);
+            this.emit('order-changed');
         })
 
         let emitQueryChangedWithDebounce = debounce(() => {
-            console.log(this._queryField.value)
-            this.emit('phones-filtered', this._queryField.value);
+            this.emit('phones-filtered');
         }, QUERY_CHANGE_DELAY)
 
         this.on('input', 'query-field', emitQueryChangedWithDebounce)
+    }
+
+    getCurrentData() {
+        return {
+        query: this._queryField.value,
+        orderType: this._orderField.value,
+        }
     }
 
     _render() {
