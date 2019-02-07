@@ -1,15 +1,21 @@
 const PhoneService = {
-    getAllPhones( callback, { query = '', orderType = ''} = {}) {
+    getAllPhones( { query = '', orderType = ''} = {} ) {
         let url = 'https://mate-academy.github.io/phone-catalogue-static/phones/phones.json';
 
         const callbackForSendingRequest = (phones) => {
-            let filteredPhones = this._filter(phones, query);
-            let sortedPhones = this._sort(filteredPhones, orderType);
-                
-            callback(sortedPhones);
+            return new Promise ((resolve, reject) => {
+                let filteredPhones = this._filter(phones, query);
+                let sortedPhones = this._sort(filteredPhones, orderType);
+                    
+                resolve(sortedPhones);
+                })
             }
 
-        this._sendRequest(url, callbackForSendingRequest);  
+        return fetch(url)
+                .then((response) => {
+                    return response.json();
+                })
+                .then(callbackForSendingRequest);  
     },
 
     getById(phoneId) {

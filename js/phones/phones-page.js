@@ -50,7 +50,8 @@ export default class PhonesPage extends Component {
       this._viewer.subscribe('return', () => {
         this._viewer.hide();
 
-        PhoneService.getAllPhones((phones) => {
+        PhoneService.getAllPhones()
+          .then((phones) => {
           this._catalog.show(phones);
         })
       });
@@ -89,9 +90,10 @@ export default class PhonesPage extends Component {
 
     _showPhones() {
       let currentFiltering = this._filter.getCurrentData();
-      PhoneService.getAllPhones((phones) => {
-        this._catalog.show(phones);
-      }, currentFiltering);  
+      PhoneService.getAllPhones(currentFiltering)
+        .then((phones) => {
+          this._catalog.show(phones);
+        });  
     }
 
      _render() {
