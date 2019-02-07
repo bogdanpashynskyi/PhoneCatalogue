@@ -12,10 +12,10 @@ const PhoneService = {
         this._sendRequest(url, callbackForSendingRequest);  
     },
 
-    getById(phoneId, callback) {
+    getById(phoneId) {
         let url = `https://mate-academy.github.io/phone-catalogue-static/phones/${ phoneId }.json`
 
-        this._sendRequest(url, callback);
+        return fetch(url);
     },
 
     _sendRequest(url, callback) {

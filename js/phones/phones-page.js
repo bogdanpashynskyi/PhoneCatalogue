@@ -24,10 +24,14 @@ export default class PhonesPage extends Component {
       });
 
       this._catalog.subscribe('phone-selected', (phoneId) => {
-        PhoneService.getById(phoneId, (phoneDetails) => {
-          this._catalog.hide();
-          this._viewer.show(phoneDetails);
-        });
+        PhoneService.getById(phoneId)
+          .then((response) => {
+            return response.json();
+          })
+          .then((phoneDetails) => {
+            this._catalog.hide();
+            this._viewer.show(phoneDetails)
+          })
 
       }) 
 
