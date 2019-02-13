@@ -2,7 +2,51 @@
 
 body {
   padding-top: 20px;
-  background-color: lightgoldenrodyellow;
+  background-color: white;
+  font-family: 'Sarabun', sans-serif;
+}
+
+header {
+  font-size: 50px;
+  margin-left: 30px;
+  margin-bottom: 0px;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+.input-option {
+  height: 32px;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+hr {
+  width: 95%;
+  margin-left: 30px;
+  margin-right: auto;
+  height: 7px;
+  background-color:#666;
+  opacity: 0.5;
+}
+
+.basket-header {
+  font-size: 1.5em;
+  margin-top: 30px;
+}
+
+button[data-element='clear-basket-button'] {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .phone-images {
@@ -52,10 +96,33 @@ img.phone {
   display: none;
 }
 
+div[data-element="quantity"] {
+  color: blue;
+}
+
 img.phone:first-child {
   display: block;
 }
 
+ul[data-element='basket'] {
+  list-style: none;
+}
+
+div[data-element="basket-item"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  margin-top: 5px;
+  padding: 10px;
+  margin-left: -40px;
+  border-top: 1px solid #e6e6ff;
+  border-bottom: 1px solid #e6e6ff;
+}
+
+.qty-button {
+  display: flex;
+}
 
 ul.phone-thumbs {
   margin: 0;
@@ -78,7 +145,6 @@ ul.phone-thumbs img {
 ul.phone-thumbs img:hover {
   cursor: pointer;
 }
-
 
 ul.specs {
   clear: both;
@@ -105,3 +171,33 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+.basket__clear-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.add-qty-button, .reduce-qty-button {
+  color: darkred;
+  font-size: 15px;
+  right: 10px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.remove-button {
+  color: darkred;
+  font-size: 20px;
+  right: 10px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
